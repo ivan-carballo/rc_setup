@@ -14,11 +14,24 @@ async function getAll() {
 }
 
 
+async function getById(id) {
+    try {
+        const styleID = await styleModel.findByPk(id);
+        return {error, data};
+    }
+    catch (error) {
+        console.log(error);
+        return {error, data}
+    }
+}
+
 
 export default {
-    getAll
+    getAll,
+    getById
 }
 
 export {
-    getAll
+    getAll,
+    getById
 }

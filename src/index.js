@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import session from "express-session";
+//import session from "express-session";
 //import connection from "./config/mysql.js";
 import router from "../src/routes/router.js";
 //import AuthorModel from "./models/authorModel.js";
