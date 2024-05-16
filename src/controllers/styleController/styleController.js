@@ -5,7 +5,7 @@ import styleModel from '../../models/styleModel.js';
 async function getAll() {
     try {
         const style = await styleModel.findAll();
-        return { data: syle };
+        return { data: style };
     }
     catch (error) {
         console.error(error);
