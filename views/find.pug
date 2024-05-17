@@ -1,0 +1,40 @@
+extends layout 
+
+block content 
+
+    h1 Pagina de buscador de setups ya creados
+
+    div#cuerpo 
+
+        div#filtros 
+            div(id='chasis', class='find')
+                label(for='chasis_id') Chasis: 
+                select#author_id(name="chasis_id") 
+                    option(value="") Seleccione chasis
+
+
+            
+            div(id='surface', class='find')
+                label(for='surface_id') Terreno: 
+                select#author_id(name="surface_id") 
+                    option(value="") Seleccione terreno
+                    option(value="1") Asfalto
+                    option(value="2") Tierra
+                    option(value="3") Mojado
+                    
+
+            div(id='style', class='find')
+                label(for='style_id') Estilo: 
+                select#author_id(name="style_id") 
+                    option(value="") Seleccione estilo
+                    option(value="1") Subviraje
+                    option(value="2") Neutral
+                    option(value="3") Sobreviraje
+
+
+
+        div#setup 
+            div(id='setupUni')
+                label(for='chasis_id') Chasis: 
+                select#author_id(name="chasis_id") 
+                    option(value="") Seleccione chasis

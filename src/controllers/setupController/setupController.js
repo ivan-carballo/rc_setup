@@ -1,14 +1,14 @@
 import { where } from "sequelize";
-import styleModel from '../../models/styleModel.js';
+import setupModel from '../../models/setupModel.js';
 
 
 async function getAll() {
     try {
-        const style = await styleModel.findAll();
+        const setup = await setupModel.findAll();
         return { data: style };
     }
     catch (error) {
-        console.error('error en styleController.js - GetAll() ' + error);
+        console.error('error en setupController.js - GetAll() ' + error);
         return { error: error };
     }
 }
@@ -16,11 +16,11 @@ async function getAll() {
 
 async function getById(id) {
     try {
-        const styleID = await styleModel.findByPk(id);
+        const setupID = await setupModel.findByPk(id);
         return {error, data};
     }
     catch (error) {
-        console.log('Error en styleController.js - getByID() ' + error);
+        console.log('Error en setupController.js - getByID() ' + error);
         return {error, data}
     }
 }

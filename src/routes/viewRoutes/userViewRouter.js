@@ -1,13 +1,12 @@
 import { Router } from "express";
 
-import styleViewController from "../../controllers/styleController/styleViewController.js";
+import userViewController from "../../controllers/userController/userViewController.js";
 //import { hasSession } from "../../middlewares/authMiddleware.js";
 
 const router = Router();
 
 
-router.get("/",styleViewController.login);
-router.get("/index",styleViewController.getAll);
+router.get("/",userViewController.login);
 /* router.get("/new",hasSession,styleViewController.createForm);
 router.post("/",hasSession,styleViewController.create);
 router.get("/:id",styleViewController.getById);
