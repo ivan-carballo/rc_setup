@@ -10,7 +10,7 @@ const router = Router();
 
 
 
-router.use("/",styleViewRouter);
+router.use("/style",styleViewRouter);
 router.use("/user",userViewRouter);
 router.use("/surface",surfaceViewRouter);
 router.use("/chasis",chasisViewRouter);
