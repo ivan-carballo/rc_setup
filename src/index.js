@@ -1,24 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
-//import session from "express-session";
-//import connection from "./config/mysql.js";
-import router from "../src/routes/router.js";
+import connectDB from "./config/mongo.js";
+
+import router from "./routes/router.js";
 
 dotenv.config();
-
-/* const sessionData = {
-    secret: process.env.SESSION_SECRET,
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-        secure:false,
-        maxAge: 60 * 60 * 1000
-    }
-} */
+const CONTAINER_PORT = 3000;
 
 const app = express();
 
-//app.use(session(sessionData));
+connectDB();
+
+
 app.use(express.static("public")); // permite mostrar archivos en la carpeta public
 
 app.set("views","./views");
@@ -30,6 +23,6 @@ app.use(express.urlencoded({extended:true})); // permite leer el body de llamada
 
 app.use("/",router);
 
-app.listen(3000,()=>{
-    console.log("Servidor en marcha en el puerto "+process.env.APP_PORT);
+app.listen(CONTAINER_PORT ,()=>{
+    console.log("Aplicacion en marcha en el puerto "+process.env.APP_PORT);
 })

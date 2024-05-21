@@ -1,21 +1,15 @@
-import { DataTypes } from 'sequelize';
-import sequelize from "../config/sequelize.js";
+import mongoose from "mongoose";
 
-const chasisModel = sequelize.define('chasis', 
-    {
-        chasis_id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull:false
-        },
+const chasisSchema  = new mongoose.Schema({
 
-        model: {
-            type: DataTypes.STRING(45),
-            allowNull: false
-        }
-
+    chasis : {
+        type: String,
+        required: true,
+        unique: true
     }
-)
+})
+
+
+const chasisModel = mongoose.model("chases",chasisSchema);
 
 export default chasisModel;

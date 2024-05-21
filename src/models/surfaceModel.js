@@ -1,22 +1,15 @@
-import { DataTypes } from 'sequelize';
-import sequelize from "../config/sequelize.js";
+import mongoose from "mongoose";
 
-const surfaceModel = sequelize.define('surface', 
-    {
-        
-        surface_id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull:false
-        },
+const surfaceSchema  = new mongoose.Schema({
 
-        surface: {
-            type: DataTypes.STRING(45),
-            allowNull: false
-        }
-
+    surface : {
+        type: String,
+        required: true,
+        unique: true
     }
-)
+})
+
+
+const surfaceModel = mongoose.model("surfaces",surfaceSchema);
 
 export default surfaceModel;

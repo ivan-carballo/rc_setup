@@ -1,22 +1,15 @@
-import { DataTypes } from 'sequelize';
-import sequelize from "../config/sequelize.js";
+import mongoose from "mongoose";
 
-const styleModel = sequelize.define('style', 
-    {
-        
-        style_id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull:false
-        },
+const styleSchema  = new mongoose.Schema({
 
-        style: {
-            type: DataTypes.STRING(45),
-            allowNull: false
-        }
-
+    style : {
+        type: String,
+        required: true,
+        unique: true
     }
-)
+})
+
+
+const styleModel = mongoose.model("style",styleSchema);
 
 export default styleModel;

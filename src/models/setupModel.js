@@ -1,55 +1,53 @@
-import { DataTypes } from 'sequelize';
-import sequelize from "../config/sequelize.js";
+import mongoose from "mongoose";
 
-const setupModel = sequelize.define('setup', 
-    {
-        setup_id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-            allowNull:false
-        },
+const setupSchema  = new mongoose.Schema({
 
-        style_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    differential : {
+        type: Number,
+        required: true,
+        unique: false
+    },
+    
+    camber: {
+        type: Number,
+        required: true, 
+        unique: false
+    },
 
-        chasis_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    height: {
+        type: Number,
+        required: true, 
+    },
 
-        user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    convergence: {
+        type: Number,
+        required: true,
+        unique: false
+    },
 
-        surface_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    ackerman: {
+        type: Number, 
+        required: true,
+        unique: false,
+    },
 
-        differential: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    chasis: {
+        type: String,
+        required: true
+    },
 
-        height: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+    style: {
+        type: String,
+        required: true
+    },
 
-        camber: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-
-        divergence: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        }
+    surface: {
+        type: String,
+        required: true
     }
-)
+})
+
+
+const setupModel = mongoose.model("setup",setupSchema);
 
 export default setupModel;

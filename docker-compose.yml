@@ -1,31 +1,26 @@
-version: '3'
-
 services:
-  db:
-    image: mysql:8.0
-    container_name: ${MYSQL_HOST}
+  mongo:
+    image: mongo:4
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    container_name: ${DB_HOST}
     ports:
-      - ${MYSQL_PORT}:3308
+      - ${DB_PORT}:27017
     volumes:
-      - ./db/data:/var/lib/mysql
-      - ./db/scripts:/docker-entrypoint-initdb.d
+      - mongo_rc_setup:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+      
   backend:
     build: .
     container_name: ${APP_HOST}
     restart: unless-stopped
-    ports: 
+    ports:
       - ${APP_PORT}:3000
-    depends_on:
-      - db
     volumes:
       - ./:/app
-      - node_modules_rc:/app/node_modules
-      
+      - node_modules:/app/node_modules
 volumes:
-  node_modules_rc:
+  node_modules:
+  mongo_rc_setup:

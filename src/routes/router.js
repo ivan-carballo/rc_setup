@@ -1,17 +1,25 @@
-import { Router } from "express";
+import {Router} from "express";
 
-import apiRouter from "../routes/apiRoutes/apiRouter.js";
-import viewRouter from "../routes/viewRoutes/viewRouter.js";
-
-const router = Router();
-
-
-router.use("/api",apiRouter);
-router.use("/",viewRouter);
+import userRouter from "./userRouter.js";
+import chasisRouter from "./chasisRouter.js";
+import styleRouter from "./styleRouter.js";
+import surfaceRouter from "./surfaceRouter.js";
+import setupRouter from "./setupRouter.js";
 
 
+const router  =  Router();
 
 
+router.get("/",(req,res)=>{
+    res.json({data:"hello api"});
+})
+
+
+router.use("/user",userRouter);
+router.use("/style",styleRouter);
+router.use("/setup",setupRouter);
+router.use("/surface",surfaceRouter);
+router.use("/chasis",chasisRouter);
 
 
 export default router;
