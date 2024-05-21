@@ -2,7 +2,8 @@ import userController from './userController.js';
 
 const getAll = async (req, res) => {
     const {error,data} = await userController.getAll();
-    res.render("index",{error,data});
+    //res.render("index",{error,data});
+    res.json(data);
 }
 
 const getById = async (req, res) => {
@@ -13,9 +14,11 @@ const getById = async (req, res) => {
 
 
 export default {
-    getAll
+    getAll,
+    getById
 }
 
 export {
-    getAll
+    getAll,
+    getById
 }

@@ -6,7 +6,7 @@ import userViewController from "../../controllers/userController/userViewControl
 const router = Router();
 
 
-router.get("/",userViewController.login);
+router.get("/",userViewController.getAll);
 /* router.get("/new",hasSession,styleViewController.createForm);
 router.post("/",hasSession,styleViewController.create);
 router.get("/:id",styleViewController.getById);

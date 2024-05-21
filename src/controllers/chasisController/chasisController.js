@@ -5,7 +5,7 @@ import chasisModel from '../../models/chasisModel.js';
 async function getAll() {
     try {
         const chasis = await chasisModel.findAll();
-        return { data: style };
+        return { data: chasis };
     }
     catch (error) {
         console.error('error en chasisController.js - GetAll() ' + error);

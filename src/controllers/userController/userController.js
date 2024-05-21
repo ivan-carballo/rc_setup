@@ -5,7 +5,7 @@ import userModel from '../../models/userModel.js';
 async function getAll() {
     try {
         const user = await userModel.findAll();
-        return { data: style };
+        return { data: user };
     }
     catch (error) {
         console.error('error en userController.js - GetAll() ' + error);

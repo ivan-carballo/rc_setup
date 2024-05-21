@@ -2,7 +2,8 @@ import chasisController from './chasisController.js';
 
 const getAll = async (req, res) => {
     const {error,data} = await chasisController.getAll();
-    res.render("index",{error,data});
+    //res.render("index",{error,data});
+    res.json(data);
 }
 
 const getById = async (req, res) => {

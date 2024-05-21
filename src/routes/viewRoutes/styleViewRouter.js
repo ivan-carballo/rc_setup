@@ -6,8 +6,8 @@ import styleViewController from "../../controllers/styleController/styleViewCont
 const router = Router();
 
 
-router.get("/",styleViewController.login);
-router.get("/index",styleViewController.getAll);
+router.get("/:id",styleViewController.getById);
+router.get("/",styleViewController.getAll);
 /* router.get("/new",hasSession,styleViewController.createForm);
 router.post("/",hasSession,styleViewController.create);
 router.get("/:id",styleViewController.getById);

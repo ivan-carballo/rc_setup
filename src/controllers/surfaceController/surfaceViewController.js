@@ -3,7 +3,8 @@ import surfaceController from './surfaceController.js';
 
 const getAll = async (req, res) => {
     const {error,data} = await surfaceController.getAll();
-    res.render("index",{error,data});
+    //res.render("index",{error,data});
+    res.json(data);
 }
 
 const getById = async (req, res) => {

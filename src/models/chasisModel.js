@@ -10,7 +10,7 @@ const chasisModel = sequelize.define('chasis',
             allowNull:false
         },
 
-        chasis: {
+        model: {
             type: DataTypes.STRING(45),
             allowNull: false
         }

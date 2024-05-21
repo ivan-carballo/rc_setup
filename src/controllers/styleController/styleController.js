@@ -9,7 +9,7 @@ async function getAll() {
     }
     catch (error) {
         console.error('error en styleController.js - GetAll() ' + error);
-        return { error: error };
+        return { error: style };
     }
 }
 
@@ -17,11 +17,12 @@ async function getAll() {
 async function getById(id) {
     try {
         const styleID = await styleModel.findByPk(id);
-        return {error, data};
+        return {error, styleID};
     }
     catch (error) {
         console.log('Error en styleController.js - getByID() ' + error);
-        return {error, data}
+        //return {errores: error}
+        return error;
     }
 }
 

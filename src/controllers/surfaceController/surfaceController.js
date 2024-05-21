@@ -5,7 +5,7 @@ import surfaceModel from '../../models/surfaceModel.js';
 async function getAll() {
     try {
         const surface = await surfaceModel.findAll();
-        return { data: style };
+        return { data: surface };
     }
     catch (error) {
         console.error('error en surfaceController.js - GetAll() ' + error);
