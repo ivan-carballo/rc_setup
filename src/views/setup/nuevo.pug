@@ -33,22 +33,28 @@ block content
         <br><br>
 
         label(for="ackerman") Ackerman: 
-        input(id="ackerman", type="text", name="ackerman")
+        select(id="ackerman", name="ackerman")
+            option(value="close") Cerrado
+            option(value="neutral") neutro
+            option(value="open") Abierto 
 
         <br><br>
 
         label(for="chasis") Chasis: 
-        input(id="chasis", type="text", name="chasis")
-
-        <br><br>
-
-        label(for="style") Estilo: 
-        input(id="style", type="text", name="style")
+        select(id="chasis", name="chasis")
+            option(value="EB4 S2") EB4 S2 
+            option(value="EB4 S3") EB4 S3 
+            option(value="ST-1") ST-1 
+            option(value="MTA-4") MTA-4  
 
         <br><br>
 
         label(for="surface") Terreno: 
-        input(id="surface", type="text", name="surface")
+        select(id="surface", name="surface")
+            option(value="tarmac") Asfalto 
+            option(value="wet tarmac") Asfalto mojado 
+            option(value="gravel") Tierra 
+            option(value="wet gravel") Barro    
 
         <br><br><br>
 

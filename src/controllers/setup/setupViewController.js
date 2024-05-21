@@ -19,9 +19,37 @@ const getByProperty=async(req,res)=>{
 }
 
 const create = async(req,res)=>{
-    const setup = await setupController.create(req.body);
-    res.json({data:setup})
-    //res.render("./setup/setup.pug")
+    const datoInput = req.body;
+    if (datoInput['owner'] !== '' &&
+        datoInput['differential'] !== '' &&
+        datoInput['camber'] !== '' &&
+        datoInput['height'] !== '' &&
+        datoInput['convergence'] !== '' &&
+        datoInput['ackerman'] !== '' &&
+        datoInput['chasis'] !== '' &&
+        datoInput['surface'] !== '') 
+    {
+        if (parseInt(datoInput['differential']) > 15000 && 
+            parseInt(datoInput['camber']) > 0 &&
+            parseInt(datoInput['height']) < 2) 
+        {
+            datoInput['style'] = 'oversteer'
+        } else if (parseInt(datoInput['differential']) >= 10000 && 
+                    parseInt(datoInput['camber']) > 0 &&
+                    parseInt(datoInput['height']) > 2) 
+        {
+            datoInput['style'] = 'neutral'
+        } else {
+            datoInput['style'] = 'understeer'
+        }
+
+        const setup = await setupController.create(req.body);
+        res.redirect("./setup")
+    }
+    else
+    {
+        console.log('hay que escribir todo');
+    }
 }
 
 const createForm = async (req,res) => {

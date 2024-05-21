@@ -31,16 +31,18 @@ const setupSchema  = new mongoose.Schema({
     },
 
     ackerman: {
-        type: Number, 
+        type: String, 
         required: true,
         unique: false,
+        enum: ["close", "neutral", "open"],
+        default: "neutral"
     },
 
     chasis: {
         type: String,
         required: true,
         enum: ["EB4 S2","EB4 S3", "ST-1", "MTA-4"],
-        default: "EB4-S3"
+        default: "EB4 S3"
     },
 
     style: {

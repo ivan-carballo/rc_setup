@@ -16,6 +16,7 @@ router.delete("/:id",setupApiController.remove);
 router.post("/",setupViewController.create);
 
 router.get("/",setupViewController.getAll);
+router.get("/",setupApiController.getAll);
 router.get("/new",setupViewController.createForm);
 
 
