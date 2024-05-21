@@ -39,7 +39,7 @@ const setupSchema  = new mongoose.Schema({
     chasis: {
         type: String,
         required: true,
-        enum: ["EB4-S2","EB4-S3", "ST-1", "MTA-4"],
+        enum: ["EB4 S2","EB4 S3", "ST-1", "MTA-4"],
         default: "EB4-S3"
     },
 

@@ -21,6 +21,7 @@ const getByProperty=async(req,res)=>{
 const create = async(req,res)=>{
     const setup = await setupController.create(req.body);
     res.json({data:setup})
+    //res.render("./setup/setup.pug")
 }
 
 const createForm = async (req,res) => {
