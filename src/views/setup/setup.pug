@@ -1,0 +1,17 @@
+extends ../header 
+
+block content
+
+    h1 Aqui van los setups ya creados
+
+    <br><br>
+
+    div#cuadroDatos
+        each uno in data
+            div.cuadroUnidad
+                p.datos= 'Creado por: ' + uno['owner'] 
+                <br>
+                p.datos= 'Camber: ' + uno['camber']
+                p.datos= 'surface: ' + uno['surface']
+                p.datos= 'ackerman: ' + uno['ackerman']
+                p.datos= 'chasis: ' + uno['chasis']

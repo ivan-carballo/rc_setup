@@ -9,6 +9,7 @@ const getAll = async()=> {
         return [];
     }
 }
+
 const getById = async(id) =>{
     try {
         const setup = await setupModel.findById(id);
@@ -19,6 +20,7 @@ const getById = async(id) =>{
         
     }
 }
+
 const getByProperty = async(property,value) =>{
     try {
         console.log("property",property)
@@ -29,6 +31,7 @@ const getByProperty = async(property,value) =>{
         return null;
     }
 }
+
 const create = async(data) =>{
     try {
         const setup = await setupModel.create(data);

@@ -23,6 +23,10 @@ const create = async(req,res)=>{
     res.json({data:setup})
 }
 
+const createForm = async (req,res) => {
+    res.render("./setup/nuevo.pug")
+}
+
 const update = async(req,res)=>{
     const id =req.params.id;
     const setup = await setupController.update(id,req.body);
@@ -41,5 +45,6 @@ export default{
     getByProperty,
     create,
     update,
-    remove
+    remove,
+    createForm
 }

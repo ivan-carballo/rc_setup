@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const setupSchema  = new mongoose.Schema({
 
+    owner: {
+        type: String,
+        required: true
+    },
+    
     differential : {
         type: Number,
         required: true,
@@ -33,17 +38,23 @@ const setupSchema  = new mongoose.Schema({
 
     chasis: {
         type: String,
-        required: true
+        required: true,
+        enum: ["EB4-S2","EB4-S3", "ST-1", "MTA-4"],
+        default: "EB4-S3"
     },
 
     style: {
         type: String,
-        required: true
+        required: true,
+        enum: ["oversteer","neutral", "understeer"],
+        default: "neutral"
     },
 
     surface: {
         type: String,
-        required: true
+        required: true,
+        enum: ["tarmac","wet tarmac", "gravel", "wet gravel"],
+        default: "tarmac"
     }
 })
 

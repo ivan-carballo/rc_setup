@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import setupController from "../../src/controllers/setup/setupController.js";
 
 const setupData = {
+    owner: 'Karis',
     differential: 5000,
     camber: 5,
     height: 2.5,

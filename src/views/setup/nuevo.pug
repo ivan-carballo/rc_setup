@@ -1,0 +1,55 @@
+extends ../header 
+
+block content
+
+    h1 Aqui se van a crear nuevos setups
+
+    <br><br>
+
+    form(action="/setup", method="post")
+        label(for="owner") Nombre: 
+        input(id="owner", type="text", name="owner")
+
+        <br><br>
+
+        label(for="differential") Diferencial: 
+        input(id="differential", type="text", name="differential")
+
+        <br><br>
+
+        label(for="camber") Camber: 
+        input(id="camber", type="text", name="camber")
+
+        <br><br>
+
+        label(for="height") Altura: 
+        input(id="height", type="text", name="height")
+
+        <br><br>
+
+        label(for="convergence") Convergencia: 
+        input(id="convergence", type="text", name="convergence")
+
+        <br><br>
+
+        label(for="ackerman") Ackerman: 
+        input(id="ackerman", type="text", name="ackerman")
+
+        <br><br>
+
+        label(for="chasis") Chasis: 
+        input(id="chasis", type="text", name="chasis")
+
+        <br><br>
+
+        label(for="style") Estilo: 
+        input(id="style", type="text", name="style")
+
+        <br><br>
+
+        label(for="surface") Terreno: 
+        input(id="surface", type="text", name="surface")
+
+        <br><br><br>
+
+        button(type="submit") Crear setup
