@@ -12,11 +12,40 @@ const getById = async (req,res) =>{
     res.json({data:setup});
 }
 
+
 const getByProperty=async(req,res)=>{
-    const {property,value}=req.query;
-    const setups = await setupController.getByProperty(property,value);
-    res.json({data:setups})
+    const {property1,value1}=req.body['chasis'];
+    const setups1 = await setupController.getByProperty("chasis", req.body['chasis']);
+    const setups2 = await setupController.getByProperty("surface", req.body['surface']);
+    const setups3 = await setupController.getByProperty("style", req.body['style']);
+
+    let setups_comun = [];
+
+    for (let i = 0; setups1.length > i; i++) {
+        let setup1_id = setups1[i]['id'];
+        
+        for (let j = 0; setups2.length > j; j++) {
+            let setup2_id = setups2[j]['id'];
+
+                for (let k = 0; setups3.length > k; k++) {
+                    let setup3_id = setups3[k]['id'];
+
+                    if (setup1_id === setup2_id && setup1_id === setup3_id) {
+                        setups_comun.push(setups3[k]);
+                    }
+                }
+        }
+    }
+
+    let none = '';
+    if (setups_comun.length == 0) {
+        none = 'No hay datos para la busqueda realizada';
+    }
+
+    res.render("./setup/find.pug", {data:setups_comun, none:none})
 }
+
+
 
 const create = async(req,res)=>{
     const datoInput = req.body;
@@ -56,6 +85,10 @@ const createForm = async (req,res) => {
     res.render("./setup/nuevo.pug")
 }
 
+const findForm = async (req,res) => {
+    res.render("./setup/find.pug")
+}
+
 const update = async(req,res)=>{
     const id =req.params.id;
     const setup = await setupController.update(id,req.body);
@@ -75,5 +108,6 @@ export default{
     create,
     update,
     remove,
-    createForm
+    createForm,
+    findForm
 }

@@ -1,15 +1,17 @@
 html 
     head 
 
-        link(rel="stylesheet", href="/setup.css")
+        link(rel="stylesheet", href="/css/setup.css")
+        link(rel="stylesheet", href="/css/navbar.css")
 
         block title 
             title RC Setups
 
     body
+        div#header 
+            div#logo 
+                p Aqui va el logo
+            div#banner 
+                p Aqui va el banner
+
         block content 
-            h1(
-                class="layout-title"
-                id="titulo"
-            ) Esto es el layout
-        script(src="/js/index.js")

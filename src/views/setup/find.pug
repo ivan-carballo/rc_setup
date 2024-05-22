@@ -1,0 +1,58 @@
+extends ../header 
+
+block content
+
+    h1 Aqui se van los buscadores
+
+    <br><br>
+
+    div#completo 
+        div#buscar
+
+            form(action="/setup", method="post")
+                label(for="chasis") Chasis: 
+                select(id="chasis", name="chasis")
+                    option(value="EB4 S2") EB4 S2 
+                    option(value="EB4 S3") EB4 S3 
+                    option(value="ST-1") ST-1 
+                    option(value="MTA-4") MTA-4  
+                
+                <br><br>
+
+                label(for="surface") Terreno: 
+                select(id="surface", name="surface")
+                    option(value="tarmac") Asfalto 
+                    option(value="wet tarmac") Asfalto mojado 
+                    option(value="gravel") Tierra 
+                    option(value="wet gravel") Barro   
+
+                <br><br>  
+
+                label(for="style") Chasis: 
+                select(id="style", name="style")
+                    option(value="oversteer") Sobreviraje
+                    option(value="neutral") Neutral 
+                    option(value="understeer") Subviraje
+
+                <br><br><br>
+
+                button(type="submit") Buscar setup
+
+
+        div#resultado 
+
+            div#cuadroDatos
+                if data
+                    each uno in data
+                        div.cuadroUnidad
+                            p.datos= 'Creado por: ' + uno['owner'] 
+                            <br>
+                            p.datos= 'Camber: ' + uno['camber']
+                            p.datos= 'surface: ' + uno['surface']
+                            p.datos= 'ackerman: ' + uno['ackerman']
+                            p.datos= 'chasis: ' + uno['chasis']
+                            p.datos= 'style: ' + uno['style']
+
+                h3= none
+
+                

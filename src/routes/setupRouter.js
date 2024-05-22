@@ -13,11 +13,14 @@ router.put("/:id",setupApiController.update);
 router.delete("/:id",setupApiController.remove); 
 
 
-router.post("/",setupViewController.create);
+
+//router.post("/",setupViewController.create);
+router.post("/",setupViewController.getByProperty);
 
 router.get("/",setupViewController.getAll);
 router.get("/",setupApiController.getAll);
 router.get("/new",setupViewController.createForm);
+router.get("/find",setupViewController.findForm)
 
 
 

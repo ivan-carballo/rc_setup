@@ -1,0 +1,15 @@
+#header {
+    border-bottom: black 2px solid;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+}
+
+#banner {
+    display: flex;
+    justify-content: center;
+}
