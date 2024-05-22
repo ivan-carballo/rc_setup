@@ -7,6 +7,7 @@ const getAll = async(req,res)=>{
     res.render("./setup/setup.pug", {data:setups});
 }
 
+
 const getById = async (req,res) =>{
     const id = req.params.id
     const setup = await setupController.getById(id);
@@ -82,18 +83,22 @@ const create = async(req,res)=>{
     }
 }
 
+
 const createForm = async (req,res) => {
     res.render("./setup/nuevo.pug")
 }
+
 
 const findForm = async (req,res) => {
     res.render("./setup/find.pug")
 }
 
+
 const updateForm = async (req,res) => {
     const setup = await setupController.getById(req.query.id)
     res.render("./setup/update.pug", {data: setup})
 }
+
 
 const update = async(req,res) => {
     let datoInput = req.body;
@@ -127,14 +132,16 @@ const update = async(req,res) => {
             delete datoInput.id;
             const setup = await setupController.update(id,datoInput);
             res.redirect('/setup')
-
     }
     else
     {
-        console.log('Hay que escribir todo');
+        updateFormRepeat(id)
+        async function updateFormRepeat(id) {
+            const setup = await setupController.getById(id)
+            const none = 'Debe rellenar todos los campos';
+            res.render("./setup/update.pug", {data: setup, none: none})  
+        }
     }
-
-
 }
 
 const remove = async(req,res) => {

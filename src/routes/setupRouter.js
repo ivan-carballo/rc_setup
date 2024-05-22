@@ -14,7 +14,6 @@ router.post("/update",setupViewController.update);
 
 
 router.get("/",setupViewController.getAll);
-router.get("/",setupApiController.getAll);
 router.get("/new",setupViewController.createForm);
 router.get("/find",setupViewController.findForm)
 router.get("/update",setupViewController.updateForm)

@@ -2,7 +2,7 @@ extends ../header
 
 block content
 
-    h1 Aqui van los setups ya creados
+    h1 Aqui van los ultimos setups creados
 
     <br><br>
 
@@ -12,10 +12,14 @@ block content
                 p.datos= 'Creado por: ' + uno['owner'] 
                 <br>
                 p.datos= 'Camber: ' + uno['camber']
+                p.datos= 'Diferencial: ' + uno['differential']
+                p.datos= 'height: ' + uno['height']
+                p.datos= 'convergence: ' + uno['convergence']
                 p.datos= 'surface: ' + uno['surface']
                 p.datos= 'ackerman: ' + uno['ackerman']
                 p.datos= 'chasis: ' + uno['chasis']
                 p.datos= 'style: ' + uno['style']
+                p.datos= 'surface: ' + uno['surface']
 
                 p(class="datos", hidden)= uno['id']
 
