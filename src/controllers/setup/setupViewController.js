@@ -4,7 +4,18 @@ import setupModel from "../../models/setupModel.js";
 
 const getAll = async(req,res)=>{
     const setups = await setupController.getAll();
-    res.render("./setup/setup.pug", {data:setups});
+    let setups_five = [];
+
+    if (setups.length > 10) {
+        for (let i = 0; 10 > i; i++) {
+            setups_five.push(setups[i])
+        }
+    } else {
+        setups_five = setups;
+    }
+
+    console.log(setups_five);
+    res.render("./setup/setup.pug", {data:setups_five});
 }
 
 
@@ -79,7 +90,11 @@ const create = async(req,res)=>{
     }
     else
     {
-        console.log('hay que escribir todo');
+        createFormRepeat()
+        async function createFormRepeat() {
+            const none = 'Debe rellenar todos los campos';
+            res.render("./setup/nuevo.pug", {none: none})
+        }
     }
 }
 

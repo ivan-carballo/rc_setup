@@ -46,10 +46,29 @@ block content
                             p.datos= 'Creado por: ' + uno['owner'] 
                             <br>
                             p.datos= 'Camber: ' + uno['camber']
+                            p.datos= 'Diferencial: ' + uno['differential']
+                            p.datos= 'height: ' + uno['height']
+                            p.datos= 'convergence: ' + uno['convergence']
                             p.datos= 'surface: ' + uno['surface']
                             p.datos= 'ackerman: ' + uno['ackerman']
                             p.datos= 'chasis: ' + uno['chasis']
                             p.datos= 'style: ' + uno['style']
+                            p.datos= 'surface: ' + uno['surface']
+
+                            p(class="datos", hidden)= uno['id']
+
+                            <br><br>
+
+                            form(action="/setup/update", method="get")
+                                label(for="id") 
+                                input(hidden, id="id", type="text", name="id" value=uno['id'])                    
+                                button(type="submit") Modificar
+
+
+                            form(action="/setup/remove", method="post")
+                                label(for="id") 
+                                input(hidden, id="id", type="text", name="id" value=uno['id'])                    
+                                button(type="submit") Eliminar   
 
                 h3= none
 
