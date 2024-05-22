@@ -17,6 +17,26 @@ const getByProperty=async(req,res)=>{
     res.json({data:users})
 }
 
+const register = async(req,res)=>{
+    const user = await userController.register(req.body);
+    if(user.error){
+        return res.json({error:user.error});
+    }
+    res.json({data:user})
+}
+
+const loginForm = async(req,res) => {
+    res.render('./user/login.pug')
+}
+
+const login = async(req,res) => {
+    const data = await userController.login(req.body);
+    if(data.error){
+        return res.status(data.status).json({error:data.error});
+    }
+    res.json({token:data.token})
+}
+
 const create = async(req,res)=>{
     const user = await userController.create(req.body);
     res.json({data:user})
@@ -40,5 +60,8 @@ export default{
     getByProperty,
     create,
     update,
-    remove
+    remove,
+    register, 
+    loginForm,
+    login
 }

@@ -1,13 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/mongo.js";
-
 import router from "./routes/router.js";
 
 dotenv.config();
 const CONTAINER_PORT = 3000;
 
 const app = express();
+app.use(express.json()); 
 
 connectDB();
 

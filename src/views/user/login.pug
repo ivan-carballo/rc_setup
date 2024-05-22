@@ -1,7 +1,36 @@
-extends ../header 
+html 
+    head 
 
-block content
+        link(rel="stylesheet", href="/css/login.css")
+        link(rel="stylesheet", href="/css/navbar.css")
 
-    h1 Este es el login y register del usuario
+        block title 
+            title Login - RC Setups
 
-    <br><br>
+    body
+        div#header 
+            div#logo 
+                p Aqui va el logo
+            div#banner 
+                p Aqui va el banner
+
+
+        div#cuerpoLogin 
+
+            div#login 
+                h3 Login 
+                
+                form(action="/login", method="post" id='formLogin')
+                    label(for="user") Usuario: 
+                    input(id="user", type="text", name="user")
+
+                    <br><br>
+
+                    label(for="password") Password: 
+                    input(id="password", type="password", name="password")
+                    
+                    <br><br>
+
+                    button(type="submit") Iniciar sesion
+
+

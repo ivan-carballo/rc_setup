@@ -1,9 +1,13 @@
 import setupModel from "../../models/setupModel.js";
+import userController from "../users/userController.js";
 
-const getAll = async()=> {
+
+const getAll = async(userId=null)=> {
     try {
-        const setups = await setupModel.find();
-        return setups;
+        if(!userId){
+            const setups = await setupModel.find();
+            return setups;
+        }
     } catch (error) {
         console.error(error);
         return [];
@@ -12,8 +16,10 @@ const getAll = async()=> {
 
 const getById = async(id) =>{
     try {
-        const setup = await setupModel.findById(id);
-        return setup;
+        if(!userId){
+            const setup = await setupModel.findById(id);
+            return setup;
+        }
     } catch (error) {
         console.error(error);
         return null;
@@ -23,10 +29,10 @@ const getById = async(id) =>{
 
 const getByProperty = async(property,value) =>{
     try {
-        console.log("property",property)
-        console.log("value",value)
-        const setup = await setupModel.find({[property]:value})
-        return setup;
+        if(!userId){
+            const setup = await setupModel.find({[property]:value})
+            return setup;
+        }
     } catch (error) {
         return null;
     }
