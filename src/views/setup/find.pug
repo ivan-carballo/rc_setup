@@ -6,10 +6,9 @@ block content
 
     <br><br>
 
-    div#completo 
+    div#completoFind
         div#buscar
-
-            form(action="/setup", method="post")
+            form(action="/setup/find", method="post")
                 label(for="chasis") Chasis: 
                 select(id="chasis", name="chasis")
                     option(value="EB4 S2") EB4 S2 
@@ -40,8 +39,7 @@ block content
 
 
         div#resultado 
-
-            div#cuadroDatos
+            div#cuadroDatosFind
                 if data
                     each uno in data
                         div.cuadroUnidad

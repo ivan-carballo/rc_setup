@@ -1,8 +1,9 @@
 import setupController from "./setupController.js";
+import setupModel from "../../models/setupModel.js";
+
 
 const getAll = async(req,res)=>{
     const setups = await setupController.getAll();
-    //res.json({data:setups});
     res.render("./setup/setup.pug", {data:setups});
 }
 
@@ -58,12 +59,12 @@ const create = async(req,res)=>{
         datoInput['chasis'] !== '' &&
         datoInput['surface'] !== '') 
     {
-        if (parseInt(datoInput['differential']) > 15000 && 
+        if (parseInt(datoInput['differential']) > 12000 && 
             parseInt(datoInput['camber']) > 0 &&
             parseInt(datoInput['height']) < 2) 
         {
             datoInput['style'] = 'oversteer'
-        } else if (parseInt(datoInput['differential']) >= 10000 && 
+        } else if (parseInt(datoInput['differential']) >= 7500 && 
                     parseInt(datoInput['camber']) > 0 &&
                     parseInt(datoInput['height']) > 2) 
         {
@@ -89,17 +90,59 @@ const findForm = async (req,res) => {
     res.render("./setup/find.pug")
 }
 
-const update = async(req,res)=>{
-    const id =req.params.id;
-    const setup = await setupController.update(id,req.body);
-    res.json({data:setup})
+const updateForm = async (req,res) => {
+    const setup = await setupController.getById(req.query.id)
+    res.render("./setup/update.pug", {data: setup})
 }
 
-const remove = async(req,res)=>{
-    const id= req.params.id;
-    const setup = await setupController.remove(id);
-    res.json({data:setup})
+const update = async(req,res) => {
+    let datoInput = req.body;
+    const id = req.body.id
+
+    if (datoInput['owner'] !== '' &&
+    datoInput['differential'] !== '' &&
+    datoInput['camber'] !== '' &&
+    datoInput['height'] !== '' &&
+    datoInput['convergence'] !== '' &&
+    datoInput['ackerman'] !== '' &&
+    datoInput['chasis'] !== '' &&
+    datoInput['surface'] !== '') 
+    {   
+
+        if (parseInt(datoInput['differential']) > 12000 && 
+            parseInt(datoInput['camber']) > 0 &&
+            parseInt(datoInput['height']) < 2) 
+        {
+            datoInput['style'] = 'oversteer'
+        } 
+        else if (parseInt(datoInput['differential']) >= 7500 && 
+                parseInt(datoInput['camber']) > 0 &&
+                parseInt(datoInput['height']) > 2) 
+        {
+            datoInput['style'] = 'neutral'
+        } else {
+            datoInput['style'] = 'understeer'
+        }
+
+            delete datoInput.id;
+            const setup = await setupController.update(id,datoInput);
+            res.redirect('/setup')
+
+    }
+    else
+    {
+        console.log('Hay que escribir todo');
+    }
+
+
 }
+
+const remove = async(req,res) => {
+    const id = req.body.id;
+    const setup = await setupController.remove(id);
+    res.redirect('./setup')
+}
+
 
 export default{
     getAll,
@@ -109,5 +152,6 @@ export default{
     update,
     remove,
     createForm,
-    findForm
+    findForm,
+    updateForm
 }

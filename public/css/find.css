@@ -1,0 +1,25 @@
+#completoFind {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+#buscar {
+    border: black 2px solid;
+    padding: 15px;
+    width: fit-content;
+    margin: 0 15px;
+}
+
+#resultado {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+#cuadroUnidad {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.151);
+    border-radius: 15px;
+    padding: 5px;
+}

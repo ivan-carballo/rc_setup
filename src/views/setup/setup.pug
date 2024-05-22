@@ -16,3 +16,18 @@ block content
                 p.datos= 'ackerman: ' + uno['ackerman']
                 p.datos= 'chasis: ' + uno['chasis']
                 p.datos= 'style: ' + uno['style']
+
+                p(class="datos", hidden)= uno['id']
+
+                <br><br>
+
+                form(action="/setup/update", method="get")
+                    label(for="id") 
+                    input(hidden, id="id", type="text", name="id" value=uno['id'])                    
+                    button(type="submit") Modificar
+
+
+                form(action="/setup/remove", method="post")
+                    label(for="id") 
+                    input(hidden, id="id", type="text", name="id" value=uno['id'])                    
+                    button(type="submit") Eliminar                

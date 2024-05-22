@@ -1,0 +1,67 @@
+extends ../header 
+
+block content
+
+    h1 Aqui se van a modificar los setups
+
+    <br><br>
+
+    form(action="/setup/update", method="post")
+        label(for="owner") Nombre: 
+        input(id="owner", type="text", name="owner", value=data['owner'])
+
+        <br><br>
+
+        label(for="differential") Diferencial: 
+        input(id="differential", type="text", name="differential", value=data['differential'])
+
+        <br><br>
+
+        label(for="camber") Camber: 
+        input(id="camber", type="text", name="camber", value=data['camber'])
+
+        <br><br>
+
+        label(for="height") Altura: 
+        input(id="height", type="text", name="height", value=data['height'])
+
+        <br><br>
+
+        label(for="convergence") Convergencia: 
+        input(id="convergence", type="text", name="convergence", value=data['convergence'])
+
+        <br><br>
+
+        label(for="ackerman") Ackerman: 
+        select(id="ackerman", name="ackerman", value=data['ackerman'])
+            option(selected, value=data['ackerman'])= data['ackerman']
+            option(value="close") Cerrado
+            option(value="neutral") neutro
+            option(value="open") Abierto 
+
+        <br><br>
+
+        label(for="chasis") Chasis: 
+        select(id="chasis", name="chasis", value=data['chasis'])
+            option(selected, value=data['chasis'])= data['chasis']
+            option(value="EB4 S2") EB4 S2 
+            option(value="EB4 S3") EB4 S3 
+            option(value="ST-1") ST-1 
+            option(value="MTA-4") MTA-4  
+        
+        <br><br>
+
+        label(for="surface") Terreno: 
+        select(id="surface", name="surface")
+            option(selected, value=data['surface'])= data['surface']
+            option(value="tarmac") Asfalto 
+            option(value="wet tarmac") Asfalto mojado 
+            option(value="gravel") Tierra 
+            option(value="wet gravel") Barro    
+
+        <br><br><br>
+
+        label(for='id')
+        input(id='id', type='text', name='id', value=data['id'], hidden)
+
+        button(type="submit") Modificar setup
