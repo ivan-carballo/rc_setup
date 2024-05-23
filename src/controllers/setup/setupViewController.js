@@ -3,7 +3,8 @@ import setupModel from "../../models/setupModel.js";
 
 
 const getAll = async(req,res)=>{
-    const setups = await setupController.getAll();
+    let setups = await setupController.getAll();
+    setups = setups.reverse();
     let setups_five = [];
 
     if (setups.length > 10) {
@@ -27,11 +28,9 @@ const getById = async (req,res) =>{
 
 
 const getByProperty=async(req,res)=>{
-    const {property1,value1}=req.body['chasis'];
     const setups1 = await setupController.getByProperty("chasis", req.body['chasis']);
     const setups2 = await setupController.getByProperty("surface", req.body['surface']);
     const setups3 = await setupController.getByProperty("style", req.body['style']);
-
     let setups_comun = [];
 
     for (let i = 0; setups1.length > i; i++) {
@@ -162,7 +161,7 @@ const update = async(req,res) => {
 const remove = async(req,res) => {
     const id = req.body.id;
     const setup = await setupController.remove(id);
-    res.redirect('./setup')
+    res.redirect('/setup')
 }
 
 

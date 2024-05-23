@@ -1,55 +1,45 @@
 import jwt from "jsonwebtoken";
-import userController  from "../controllers/users/userController.js";
 
-const isAuthenticated = async(req,res,next)=>{
-    const authorization = req.headers.authorization;
-    if(!authorization){
-        return res.status(401).json({error:"No existe Token JWT"});
-    }
-    
+
+
+
+function isTokenCorrect (req,res,next){
     try {
-        const token = authorization.split("Bearer ")[1];
-        const decoded =jwt.verify(token,process.env.JWT_SECRET);
-        const user = await userController.getById(decoded._id);
-        if(!user){
-            return res.status(400).json({error:"No existe el usuario seleccionado"});
+        const authorization = req.headers.authorization;
+        if(!authorization){
+            return res.status(401).json({error:"No hay Token JWT"});
         }
-        req.user = user;
+        const token = authorization.split("Bearer ")[1];
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
+        console.log(decoded);
         next();
-        
     } catch (error) {
         console.error(error);
-        return res.status(500).json({error:"Error"});
+        res.status(400).json({error:"Error al verificar el Token"});
     }
 }
 
 
-const isAdmin = async(req,res,next)=>{
-    const authorization  =req.headers.authorization;
-    if(!authorization){
-        return res.status(401).json({error:"No existe Token JWT"});
+
+function hasSession(req,res,next){
+    const user = req.session.user;
+    console.log("session user",req.session);
+    if(!user){
+        return res.redirect("/login");
     }
-    try {
-        const token = authorization.split("Bearer ")[1];
-        const decoded =jwt.verify(token,process.env.JWT_SECRET);
-        const user = await userController.getById(decoded._id);
-        if(!user){
-            return res.status(400).json({error:"No existe el usuario seleccionado"});
-        }
-        if(user.role !== "admin"){
-            return res.status(401).json({error:"No tienes los permisos necesarios"});
-        }
-        req.user = user;
-        next();
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({error:"Error"});
-    }
+    next();
 }
+
+
 
 
 export {
-    isAuthenticated,
-    isAdmin
-}
+  isTokenCorrect,
+  hasSession
+};
+
+
+export default {
+  isTokenCorrect,
+  hasSession
+};

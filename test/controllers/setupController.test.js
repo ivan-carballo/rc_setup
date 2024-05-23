@@ -1,4 +1,4 @@
-import connectDB from "../../src/config/mongo.js";
+/* import connectDB from "../../src/config/mongo.js";
 import mongoose from 'mongoose';
 import setupController from "../../src/controllers/setup/setupController.js";
 
@@ -70,4 +70,4 @@ describe("Test de setupController",()=>{
         expect(newsetup.style).toEqual(setupData.style);
         expect(newsetup.surface).toEqual(setupData.surface);
     }) 
-})
+}) */

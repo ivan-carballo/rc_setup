@@ -1,5 +1,6 @@
 import userController from "./userController.js";
 
+
 const getAll = async(req,res)=>{
     const users = await userController.getAll();
     res.json({data:users});
@@ -17,25 +18,40 @@ const getByProperty=async(req,res)=>{
     res.json({data:users})
 }
 
-const register = async(req,res)=>{
-    const user = await userController.register(req.body);
-    if(user.error){
-        return res.json({error:user.error});
-    }
-    res.json({data:user})
+const registerForm = async(req,res) => {
+    res.render('./user/register.pug')
 }
+
+
+const register = async(req,res)=>{
+    const {username,password,passwordRepeat} = req.body;
+    const {error,data} = await userController.register(username,password,passwordRepeat);
+    if(error){
+        res.status(400).json({error});
+    }
+    else{
+        res.redirect('/login')
+    }
+}
+
+
 
 const loginForm = async(req,res) => {
     res.render('./user/login.pug')
 }
 
-const login = async(req,res) => {
-    const data = await userController.login(req.body);
-    if(data.error){
-        return res.status(data.status).json({error:data.error});
+
+const login = async(req,res) => {    
+    const {username,password} = req.body;
+    const {error,data} = await userController.login(username,password);
+    if(error){
+        res.status(400).json({error});
     }
-    res.json({token:data.token})
+    else{
+        res.redirect('/setup')
+    }
 }
+
 
 const create = async(req,res)=>{
     const user = await userController.create(req.body);
@@ -61,6 +77,7 @@ export default{
     create,
     update,
     remove,
+    registerForm,
     register, 
     loginForm,
     login

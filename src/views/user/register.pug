@@ -5,7 +5,7 @@ html
         link(rel="stylesheet", href="/css/navbar.css")
 
         block title 
-            title Login - RC Setups
+            title Register - RC Setups
 
     body
         div#header 
@@ -15,12 +15,13 @@ html
                 p Aqui va el banner
 
 
+
         div#cuerpoLogin 
 
             div#login 
-                h3 Login 
+                h3 Register 
                 
-                form(action="/login", method="post" id='formLogin')
+                form(action="/register", method="post" id='formLogin')
                     label(for="username") Usuario: 
                     input(id="username", type="text", name="username")
 
@@ -31,9 +32,12 @@ html
                     
                     <br><br>
 
-                    button(type="submit") Iniciar sesion
+                    label(for="passwordRepeat") Repeat password: 
+                    input(id="passwordRepeat", type="password", name="passwordRepeat")
+                    
+                    <br><br>
 
-                form(action="/register", method="get")
-                    button(type="submit") Usuario nuevo
+                    button(type="submit") Crear usuario nuevo
 
-
+                form(action="/login", method="get")
+                    button(type="submit") Login

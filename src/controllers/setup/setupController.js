@@ -4,10 +4,10 @@ import userController from "../users/userController.js";
 
 const getAll = async(userId=null)=> {
     try {
-        if(!userId){
+        //if(!userId){
             const setups = await setupModel.find();
             return setups;
-        }
+        //}
     } catch (error) {
         console.error(error);
         return [];
@@ -16,10 +16,10 @@ const getAll = async(userId=null)=> {
 
 const getById = async(id) =>{
     try {
-        if(!userId){
+        //if(!userId){
             const setup = await setupModel.findById(id);
             return setup;
-        }
+        //}
     } catch (error) {
         console.error(error);
         return null;
@@ -29,10 +29,10 @@ const getById = async(id) =>{
 
 const getByProperty = async(property,value) =>{
     try {
-        if(!userId){
+        //if(!userId){
             const setup = await setupModel.find({[property]:value})
             return setup;
-        }
+        //}
     } catch (error) {
         return null;
     }

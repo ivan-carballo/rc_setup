@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 import userController from "../../src/controllers/users/userController.js";
 
 const userData = {
-    username:"usuario",
-    password:"1234",
+    username:"karis",
+    password:"123",
     role:"admin"
 }
 

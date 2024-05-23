@@ -2,6 +2,7 @@ import userModel from "../../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+
 const getAll = async()=> {
     try {
         const users = await userModel.find();
@@ -27,8 +28,6 @@ const getById = async(id) =>{
 
 const getByProperty = async(property,value) =>{
     try {
-        console.log("property",property)
-        console.log("value",value)
         const user = await userModel.find({[property]:value})
         return user;
     } catch (error) {
@@ -36,40 +35,33 @@ const getByProperty = async(property,value) =>{
     }
 }
 
-const login = async(data) =>{
-    const {username,password} = data;
-    if(!username || !password) {
-        return {error:"No se han facilitado todos los datos",status:400};
-    }
+
+
+async function login(username,password){
     try {
-        let user;
-        const users = await getByProperty("Nombre de usuario",username);
-        user = users[0];
-
-        console.log("Usuario",user);
-
-        if(!user){
-            return {error:"No existe el usuario seleccionado",status:400};
+        if(!password ){
+            return {error:"Falta la contraseña"};
         }
-
-        console.log("contraseña",password,user.password);
-        const isPasswordCorrect = await bcrypt.compare(password,user.password);
-
+        let oldUser = await getByProperty('username', username);
+        if(!oldUser){
+            return {error:"La combinación de usuario y contraseña no es valida"};
+        }
+        const isPasswordCorrect = await bcrypt.compare(password,oldUser[0]['password']);
         if(!isPasswordCorrect){
-            return {error:"El usuario o la contraseña son incorrectos",status:400};
+            //const token = jwt.sign({id:oldUser.user_id,username:oldUser.username},process.env.JWT_SECRET,{expiresIn: 60 * 60})
+            const token = jwt.sign({id:oldUser[0]['_id'],username:oldUser[0]['username']},process.env.JWT_SECRET,{expiresIn: 60 * 60})
+            console.log('esta linea es todo el token necesario: ' + token)
+            return {data:"El usuario se ha logueado correctamente",token};
         }
-
-        console.log("Usuario",user)
-
-        const token = jwt.sign({_id:user._id,username:user.username,role:user.role},process.env.JWT_SECRET,{expiresIn: 60 * 60})
-        return {token};
-
-        
+        else{
+            return {error:"la combinación de usuario y contraseña no es valida"}
+        }
     } catch (error) {
         console.error(error);
-        return {error:"Error",status:500};
+        return {error:"Hay un error en el login"}
     }
 }
+
 
 
 const create = async(data) =>{
@@ -85,26 +77,34 @@ const create = async(data) =>{
 }
 
 
-const register = async(data) => {
-    const {username,password,passwordRepeat} = data;
 
-    if(!username || !password || !passwordRepeat) {
-        return {error:"Se deben rellenar todos los campos"};
+
+const register = async(username,password,passwordRepeat) => {
+    try {
+        if(!password || !passwordRepeat){
+            return {error:"Falta la contraseña"};
+        }
+        if(password !== passwordRepeat){
+            return {error:"Las contraseñas no coinciden"};
+        }
+        const {data:oldUser} = await getByProperty('username', username);
+        if(oldUser){
+            return {error:"El usuario ya existe"};
+        }
+        const hash = await bcrypt.hash(password,10);
+        const userData = {
+            username,
+            password:hash
+        }
+        const newUser = await create(userData);
+        return {data:newUser};
+    } catch (error) {
+        console.error(error);
+        return {error:"Error en el registro"}
     }
-
-    if(password !== passwordRepeat){
-        return {error:"Las dos contraseñas deben de ser identicas"};
-    }
-
-    const userData = {
-        username,
-        password,
-        role:"user"
-    }
-
-    const user = await create(userData);
-    return user;
 }
+
+
 
 
 const update = async(id,data) =>{

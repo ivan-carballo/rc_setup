@@ -7,12 +7,13 @@
     border: black 2px solid;
     padding: 15px;
     width: fit-content;
-    margin: 0 15px;
+    height: fit-content;
+    margin-left: 25px;
 }
 
-#resultado {
+#cuadroDatosFind {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: center;
 }
 
