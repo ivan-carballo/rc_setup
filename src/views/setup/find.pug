@@ -69,6 +69,12 @@ block content
                             input(hidden, id="id", type="text", name="id" value=uno['id'])                    
                             button(type="submit") Eliminar   
 
+
+                        form(action="/fav/add", method="post")
+                            label(for="id") 
+                            input(hidden, id="id", type="text", name="id" value=uno['id'])                    
+                            button(type="submit") Añadir a favoritos   
+
             h3= none
 
                 

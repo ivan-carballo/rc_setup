@@ -1,4 +1,5 @@
 import setupController from "./setupController.js";
+import favController from "../fav/favController.js";
 import setupModel from "../../models/setupModel.js";
 
 
@@ -15,7 +16,11 @@ const getAll = async(req,res)=>{
         setups_five = setups;
     }
 
-    console.log(setups_five);
+    for (let i = 0; setups_five.length > i; i++) {
+        console.log(setups_five[i]['id'])
+        
+    }
+
     res.render("./setup/setup.pug", {data:setups_five});
 }
 

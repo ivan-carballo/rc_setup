@@ -46,9 +46,12 @@ async function login(username,password){
         if(!oldUser){
             return {error:"La combinación de usuario y contraseña no es valida"};
         }
+
         const isPasswordCorrect = await bcrypt.compare(password,oldUser[0]['password']);
-        if(!isPasswordCorrect){
-            //const token = jwt.sign({id:oldUser.user_id,username:oldUser.username},process.env.JWT_SECRET,{expiresIn: 60 * 60})
+        console.log('contraseña nueva de ahora: ' + hash)
+        console.log('contraseña original de antes: ' + oldUser[0]['password'])
+
+        if(isPasswordCorrect){
             const token = jwt.sign({id:oldUser[0]['_id'],username:oldUser[0]['username']},process.env.JWT_SECRET,{expiresIn: 60 * 60})
             console.log('esta linea es todo el token necesario: ' + token)
             return {data:"El usuario se ha logueado correctamente",token};
