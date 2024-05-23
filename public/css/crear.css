@@ -1,0 +1,37 @@
+#cuadroCompleto {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: -25px;
+}
+
+.cuadroUnitario {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.13);
+    border-radius: 25px;
+    margin: 15px;
+    height: fit-content;
+}
+
+input {
+    border-radius: 10px;
+    padding: 2px 10px;
+}
+
+.imgSetup {
+    margin-top: 10px;
+    border-radius: 25px;
+    height: 250px;
+}
+
+#divChasis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+    justify-items: center;
+}
+
+.imgChasis {
+    border-radius: 25px;
+    width: 300px;
+}
