@@ -16,11 +16,6 @@ const getAll = async(req,res)=>{
         setups_five = setups;
     }
 
-    for (let i = 0; setups_five.length > i; i++) {
-        console.log(setups_five[i]['id'])
-        
-    }
-
     res.render("./setup/setup.pug", {data:setups_five});
 }
 

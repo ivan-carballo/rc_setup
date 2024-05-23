@@ -21,3 +21,9 @@
 h1 {
     text-align: center;
 }
+
+#noFav {
+    text-align: center;
+    color: rgb(107, 6, 6);
+    font-style: italic;
+}

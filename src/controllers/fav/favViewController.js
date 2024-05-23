@@ -14,7 +14,12 @@ const getAll = async(req,res)=>{
         datosSetups.push(setupUnitario)
     }
 
-    res.render("./fav/fav.pug", {data:datosSetups});
+    let none;
+    if (datosSetups.length == 0) {
+        none = 'No has marcado a ningun setup como favorito'
+    }
+
+    res.render("./fav/fav.pug", {data:datosSetups, none:none});
 }
 
 
@@ -23,8 +28,17 @@ const getAll = async(req,res)=>{
 
 const create = async(req,res)=>{
     let datos = [{username:'karis', setupID:req.body.id}]
-    const fav = await favController.create(datos);
-    res.redirect("/fav")
+
+    let favExiste = await favController.getByProperty('setupID',req.body.id)
+
+    if (favExiste.length == 0 ) {
+        console.log('primero')
+        const fav = await favController.create(datos);
+        res.redirect("/setup")
+    } else {
+        console.log('segundo')
+        res.redirect("/setup")
+    }
 
 
 }
