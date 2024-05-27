@@ -27,3 +27,9 @@ bcrypt es un algoritmo de encriptación de contraseña diseñado para ser lento 
 Además, bcrypt incorpora técnicas de salting, que consiste en añadir datos aleatorios a la contraseña antes de encriptarla, lo que dificulta aún más la tarea de los hackers de descifrar las contraseñas.
 
 La utilización de bcrypt para encriptar las contraseñas en este proyecto garantiza un nivel óptimo de seguridad en los inicios de sesión de los usuarios, protegiendo así sus datos personales de posibles vulnerabilidades.
+
+# Endpoints
+
+setup/api - Todos los setups creados ordenado de mas nuevo a mas antiguo
+setup/apifind - Busqueda de setups con filtros de chasis, estilo y terreno
+
